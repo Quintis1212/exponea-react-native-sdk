@@ -22,6 +22,7 @@ import { InAppMessageActionDef } from '../InAppMessageActionDef';
 import type Configuration from '../Configuration';
 import { TestUtils } from './TestUtils';
 import Exponea from '../index';
+import { mockFormResponse } from './utils/mockFormResponse';
 
 TestUtils.mockExponeaNative();
 
@@ -230,6 +231,11 @@ export class MockExponea implements ExponeaType {
 
   fetchAppInboxItem(_messageId: string): Promise<AppInboxMessage> {
     return Promise.resolve({ id: '1', type: 'push' });
+  }
+
+  fetchForm(placeholderId: string): Promise<Record<string, any>> {
+    this.lastArgumentsJson = JSON.stringify([placeholderId], withoutNulls);
+    return Promise.resolve(mockFormResponse(placeholderId));
   }
 
   setInAppMessageCallback(callback: InAppMessageCallback) {

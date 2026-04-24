@@ -2,6 +2,7 @@ import { FlushMode, LogLevel } from '../ExponeaType';
 import EventType from '../EventType';
 import { TestUtils } from './TestUtils';
 import { MockExponea } from './MockExponea';
+import { mockFormResponse } from './utils/mockFormResponse';
 import {
   HttpLoggingLevel,
   PushNotificationImportance,
@@ -132,6 +133,14 @@ describe('parameter serialization and typings', () => {
     expect(mockExponea.lastArgumentsJson).toBe(
       '[{"key":"value","number":"123"}]'
     );
+  });
+
+  test('fetchForm', () => {
+   const responce =  mockExponea.fetchForm('mock-placeholder-id');
+    expect(mockExponea.lastArgumentsJson).toBe(
+      '["mock-placeholder-id"]'
+    );
+    expect(responce).toEqual(mockFormResponse('mock-placeholder-id'))
   });
 
   test('anonymize', () => {

@@ -7,6 +7,13 @@ export interface ExponeaProject {
   baseUrl?: string;
 }
 
+export interface ExponeaConfig {
+  projectToken: string;
+  authorizationToken: string;
+  baseUrl: string;
+  applicationId: string;
+}
+
 export interface Consent {
   id: string;
   legitimateInterest: boolean;
@@ -260,6 +267,9 @@ export interface Spec extends TurboModule {
 
   /** Fetches a specific App Inbox message by ID */
   fetchAppInboxItem(messageId: string): Promise<AppInboxMessage>;
+
+  /** Fetches form configuration for the given placeholder id */
+  fetchForm(placeholderId: string): Promise<Object>;
 
   /** Tracks push notification delivery event (respects tracking consent) */
   trackDeliveredPush(params: Object): Promise<void>;

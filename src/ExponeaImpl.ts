@@ -1,5 +1,5 @@
 import NativeExponea from './NativeExponea';
-import type { Segment } from './NativeExponea';
+import type { JsonObject, Segment } from './NativeExponea';
 import { ExponeaListeners } from './ExponeaListeners';
 import type { ExponeaType } from './index';
 
@@ -64,6 +64,9 @@ export const Exponea: ExponeaType = {
   markAppInboxAsRead: (message) => NativeExponea.markAppInboxAsRead(message),
   fetchAppInbox: () => NativeExponea.fetchAppInbox(),
   fetchAppInboxItem: (messageId) => NativeExponea.fetchAppInboxItem(messageId),
+
+  fetchForm: (placeholderId) =>
+    NativeExponea.fetchForm(placeholderId) as Promise<JsonObject>,
 
   trackDeliveredPush: (params) => NativeExponea.trackDeliveredPush(params),
   trackDeliveredPushWithoutTrackingConsent: (params) =>

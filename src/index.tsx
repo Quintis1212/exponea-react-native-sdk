@@ -16,6 +16,7 @@ import type {
   AppInboxStyle,
   JsonObject,
   ExponeaProject,
+  ExponeaConfig,
   PushAction,
   InAppMessageAction,
   InAppMessageActionType,
@@ -48,6 +49,7 @@ export type {
   AppInboxStyle,
   JsonObject,
   ExponeaProject,
+  ExponeaConfig,
   PushAction,
   InAppMessageAction,
   InAppMessageActionType,
@@ -316,6 +318,9 @@ export interface ExponeaType {
   /** Fetches a specific App Inbox message by ID */
   fetchAppInboxItem(messageId: string): Promise<AppInboxMessage>;
 
+  /** Fetches form configuration for the given placeholder id */
+  fetchForm(placeholderId: string): Promise<JsonObject>;
+
   // Push Tracking (6 methods)
   /** Tracks push notification delivery event (respects tracking consent) */
   trackDeliveredPush(params: Record<string, string>): Promise<void>;
@@ -499,6 +504,7 @@ export const trackAppInboxClickWithoutTrackingConsent =
 export const markAppInboxAsRead = Exponea.markAppInboxAsRead;
 export const fetchAppInbox = Exponea.fetchAppInbox;
 export const fetchAppInboxItem = Exponea.fetchAppInboxItem;
+export const fetchForm = Exponea.fetchForm;
 export const trackDeliveredPush = Exponea.trackDeliveredPush;
 export const trackDeliveredPushWithoutTrackingConsent =
   Exponea.trackDeliveredPushWithoutTrackingConsent;
